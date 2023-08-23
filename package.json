@@ -11,6 +11,8 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "antd-mobile": "^5.32.0",
+    "antd-mobile-icons": "^0.3.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",

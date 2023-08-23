@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import BottomNavBar from '~/ui/BottomNavBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,8 +23,13 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
       </head>
-      <body className={inter.className}>
-        {children}
+      <body className={`${inter.className} h-screen min-h-screen max-h-screen fcc-between`}>
+        <div className='flex-1'>
+          {children}
+        </div>
+        <div className='flex-0 w-full bg-white shadow'>
+          <BottomNavBar />
+        </div>
       </body>
     </html >
   )
