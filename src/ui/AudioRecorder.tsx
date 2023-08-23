@@ -198,7 +198,6 @@ const AudioRecorder: React.FC<Props> = (props) => {
       <div className='inline-block border-#ccc vertical-bottom'>
         <div className="recwave h-100px w-300px" />
       </div >
-      <audio ref={audioRef}/>
       <audio id="audio" crossOrigin="anonymous"></audio>
     </>
 

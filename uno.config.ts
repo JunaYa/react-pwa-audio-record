@@ -81,4 +81,5 @@ export default defineConfig({
     }),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
+  include: ["**.ts", "**.tsx"],
 })
