@@ -22,6 +22,7 @@
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "@unocss/eslint-config": "^0.55.2",
     "@unocss/postcss": "^0.55.2",
     "@unocss/reset": "^0.55.2",
     "autoprefixer": "10.4.15",
