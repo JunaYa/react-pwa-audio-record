@@ -11,10 +11,8 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@ffmpeg/ffmpeg": "^0.12.5",
     "next": "13.4.19",
     "react": "18.2.0",
-    "react-audio-visualize": "^1.1.3",
     "react-dom": "18.2.0",
     "recorder-core": "^1.2.23070100"
   },

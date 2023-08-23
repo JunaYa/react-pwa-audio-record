@@ -168,14 +168,14 @@ const AudioRecorder: React.FC<Props> = (props) => {
     }, 5000);
   }
 
-  useEffect(() => {
-    if (autoAuth) {
-      handleRecordAuthOpen()
-    }
-    return () => {
-      handleRecordAuthClose()
-    }
-  }, [autoAuth])
+  // useEffect(() => {
+  //   if (autoAuth) {
+  //     handleRecordAuthOpen()
+  //   }
+  //   return () => {
+  //     handleRecordAuthClose()
+  //   }
+  // }, [autoAuth])
 
   return (
     <>
