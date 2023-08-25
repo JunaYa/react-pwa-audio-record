@@ -7,10 +7,21 @@ import {
   UserOutline,
 } from 'antd-mobile-icons'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
+
+function getDefaultTab(path: string) {
+  if (path.includes('/publish')) {
+    return 'publish'
+  }
+  if (path.includes('/person')) {
+    return 'person'
+  }
+  return 'home'
+}
 
 const BottomNavBar = () => {
   const router = useRouter()
+  const pathname = usePathname()
 
   const tabs = [
     {
@@ -31,7 +42,8 @@ const BottomNavBar = () => {
       icon: <UserOutline />,
     },
   ]
-  const [activeKey, setActiveKey] = useState('home')
+  const defaultTab = getDefaultTab(pathname)
+  const [activeKey, setActiveKey] = useState(defaultTab)
 
   const onChange = (key: string) => {
     setActiveKey(key)

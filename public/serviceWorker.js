@@ -75,5 +75,11 @@ self.addEventListener("activate", event => {
 //   );
 // });
 self.addEventListener("fetch", (event) => {
-  console.log('fetch', event)
+  // Cache http and https only, skip unsupported chrome-extension:// and file://...
+  // console.log('e.request.url', event.request.url)
+  // const isHttp = event.request.url.startsWith('http:') || event.request.url.startsWith('https:')
+  // if (!isHttp) {
+  //   return;
+  // }
+  // console.log('fetch', event)
 })
