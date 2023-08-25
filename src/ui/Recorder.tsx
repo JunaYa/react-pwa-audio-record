@@ -88,7 +88,7 @@ const AudioRecorder: React.FC<IProps> = ({ onFinish }) => {
   return (
     <button
       onClick={!isRecording ? onAudioClick : onStopRecording}
-      className="bg-blue-200 rounded-lg p-2 border hover:border-blue-300"
+      className="border rounded-lg bg-blue-200 p-2 hover:border-blue-300"
     >
       {!isRecording ? "Audio" : "Stop recording"}
     </button>

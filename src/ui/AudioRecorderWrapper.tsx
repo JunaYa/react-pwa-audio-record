@@ -1,4 +1,4 @@
-'use-client' 
+'use client' 
 import AudioRecorder from "~/ui/AudioRecorder";
 const AudioRecorderWrapper = () => {
   if ((typeof window !== 'undefined')) {

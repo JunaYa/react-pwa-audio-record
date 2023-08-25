@@ -186,10 +186,10 @@ const AudioRecorder: React.FC<Props> = (props) => {
         </div>
 
         <div className='bg-white shadow'>
-          <button className='p-4 bg-red' type='button' onClick={handleRecordStop} >停止</button>
+          <button className='bg-red p-4' type='button' onClick={handleRecordStop} >停止</button>
           <button className='p-4' onClick={handleRecordPause}>暂停</button>
         </div>
-        <button className='p-4 bg-green' type='button' onClick={handleRecordStart}>录制</button>
+        <button className='bg-green p-4' type='button' onClick={handleRecordStart}>录制</button>
         {status === StatusEnum.PAUSED && <button onClick={handleRecordResume}>继续</button>}
         <span >
           <button onClick={handleAudioPlay}>播放</button>

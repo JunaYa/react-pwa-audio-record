@@ -3,7 +3,7 @@
 export default function Home() {
 
   return (
-    <main className="h-full lex flex-col items-center justify-between px-24">
+    <main className="lex h-full flex-col items-center justify-between px-24">
       Home page
     </main>
   )

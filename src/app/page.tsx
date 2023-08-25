@@ -22,7 +22,7 @@ export default function Home() {
   console.log('isMounted', isMounted)
 
   return (
-    <main className="h-full lex flex-col items-center justify-between px-24">
+    <main className="lex h-full flex-col items-center justify-between px-24">
       Main page
       {/* <AudioRecorder /> */}
     </main>
