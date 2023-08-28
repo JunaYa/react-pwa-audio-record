@@ -7,7 +7,7 @@ import { languages } from '~/i18n/setting'
 const inter = Inter({ subsets: ['latin'] })
 
 export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }))
+  return languages.map((lang) => ({ lang }))
 }
 
 // export const metadata: Metadata = {
@@ -32,8 +32,8 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
       </head>
-      <body className={`${inter.className} h-screen min-h-screen max-h-screen fcc-between`}>
-        <div className='flex-1'>
+      <body className={`${inter.className} h-screen min-h-screen max-h-screen w-full fcc-between`}>
+        <div className='flex-1 w-full'>
           {children}
         </div>
         <div className='flex-0 w-full bg-white shadow'>

@@ -1,13 +1,13 @@
-export const fallbackLng = 'en'
-export const languages = [fallbackLng, 'zh', 'it']
+export const fallbackLang = 'en'
+export const languages = [fallbackLang, 'zh', 'it']
 export const defaultNS = 'common'
 
-export function getOptions (lng = fallbackLng, ns = defaultNS) {
+export function getOptions (lng = fallbackLang, ns = defaultNS) {
   return {
     debug: process.env.NODE_ENV === 'development',
     supportedLngs: languages,
     preload: languages,
-    fallbackLng,
+    fallbackLang,
     lng,
     fallbackNS: defaultNS,
     defaultNS,
