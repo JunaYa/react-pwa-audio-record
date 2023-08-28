@@ -1,8 +1,6 @@
 'use client'
 import { List, NavBar, Space, Switch } from "antd-mobile"
-import { PayCircleOutline, SetOutline, UnorderedListOutline } from "antd-mobile-icons"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
 import { useTranslation } from "~/i18n/client"
 import { SwitchLanguage } from "~/ui/SwitchLanguage"
 
