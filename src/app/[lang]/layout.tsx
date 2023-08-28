@@ -2,13 +2,13 @@ import './globals.css'
 import { dir } from 'i18next'
 import { Inter } from 'next/font/google'
 import BottomNavBar from '~/ui/BottomNavBar'
-import { languages } from '~/i18n/setting'
+// import { languages } from '~/i18n/setting'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export async function generateStaticParams() {
-  return languages.map((lang) => ({ lang }))
-}
+// export async function generateStaticParams() {
+//   return languages.map((lang) => ({ lang }))
+// }
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
