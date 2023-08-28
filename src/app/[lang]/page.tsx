@@ -1,33 +1,27 @@
-'use client'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react';
-import useIsMounted from '~/hooks/useIsMounted';
-import AudioRecorder from "~/ui/AudioRecorderWrapper";
+import { useTranslation } from '~/i18n';
+import { fallbackLng, languages } from '~/i18n/setting';
 import ClientComponent from '~/ui/ClientComponnet';
+
+// export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
+//   const { t } = await useTranslation(lang)
+//   return { title: t('h1') }
+// }
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-export default function Home() {
-  const router = useRouter()
-  const isMounted = useIsMounted()
-  const [start, setStart] = useState(false)
+// eslint-disable-next-line @next/next/no-async-client-component
+export default async function Home({ params: { lang } }: { params: { lang: string } }) {
+  if (languages.indexOf(lang) < 0) lang = fallbackLng
+  const { t } = await useTranslation(lang, 'common')
+
   // router.prefetch('/home')
   // router.prefetch('/publish')
   // router.prefetch('/person')
 
-  useEffect(() => {
-    void delay(1000).then(() => {
-      navigator.setAppBadge(125);
-    })
-  }, [isMounted])
-
-  console.log('isMounted', isMounted)
-
   return (
     <main className="lex h-full flex-col items-center justify-between px-24">
       Main page
-      <button onClick={() => setStart(true)}>start</button>
-      {/* {start && <AudioRecorder />} */}
+      <div>{t('welcome')}</div>
       <ClientComponent />
     </main>
   )
