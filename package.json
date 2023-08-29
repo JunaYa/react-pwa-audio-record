@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.22.10",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "accept-language": "^3.0.18",
     "antd-mobile": "^5.32.0",
     "antd-mobile-icons": "^0.3.0",

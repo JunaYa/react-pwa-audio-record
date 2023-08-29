@@ -1,14 +1,10 @@
 'use client'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import Recorder from 'recorder-core'
 import 'recorder-core/src/engine/mp3'
 import 'recorder-core/src/engine/mp3-engine'
 import 'recorder-core/src/extensions/waveview'
 
-import pauseSVG from '~/assets/icons/pause.svg';
-import resumeSVG from '~/assets/icons/play.svg';
-import saveSVG from '~/assets/icons/save.svg';
-import discardSVG from '~/assets/icons/stop.svg';
 import { formatMs } from '~/utils/fomat'
 import { createObjectURL, revokeObjectURL } from '~/utils/media'
 
