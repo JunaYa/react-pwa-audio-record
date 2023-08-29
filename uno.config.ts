@@ -81,5 +81,9 @@ export default defineConfig({
     }),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
-  include: ["**.ts", "**.tsx"],
+  content: {
+    pipeline: {
+      include: ["**.ts", "**.tsx"],
+    }
+  }
 })
