@@ -1,7 +1,7 @@
 'use client'
 import AudioRecorder from "~/ui/AudioRecorder";
 
-export default function Home() {
+export default function PublishPage() {
 
   return (
     <main className="lex h-full flex-col items-center justify-between px-24">
