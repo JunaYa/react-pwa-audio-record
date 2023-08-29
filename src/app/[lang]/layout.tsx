@@ -4,7 +4,6 @@ import { dir } from 'i18next'
 import { Inter } from 'next/font/google'
 import BottomNavBar from '~/ui/BottomNavBar'
 import { languages } from '~/i18n/setting'
-import "uno.css";
 
 const inter = Inter({ subsets: ['latin'] })
 
