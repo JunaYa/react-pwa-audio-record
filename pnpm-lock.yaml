@@ -64,6 +64,9 @@ devDependencies:
   '@unocss/eslint-config':
     specifier: ^0.55.2
     version: 0.55.2(eslint@8.47.0)(typescript@5.1.6)
+  '@unocss/postcss':
+    specifier: ^0.55.3
+    version: 0.55.3(postcss@8.4.28)
   '@unocss/reset':
     specifier: ^0.55.2
     version: 0.55.2
@@ -2112,8 +2115,20 @@ packages:
       unconfig: 0.3.10
     dev: true
 
+  /@unocss/config@0.55.3:
+    resolution: {integrity: sha512-d1AK44n8DeYA1gIMaWg5lR/zx2FgVS6luaeMMGm5985VJqZoj7WJAj+Av/BOaEFJEP9ruYO1Hsb2ng2ega0ybQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@unocss/core': 0.55.3
+      unconfig: 0.3.10
+    dev: true
+
   /@unocss/core@0.55.2:
     resolution: {integrity: sha512-ZLEES8RDgWoK/vttUzl3PM2bZqL3HvhLgj8xdDa09Xw+JiTlR4c66s+hLn52oCoJTnT9lGsD2j7tTGN9ToSiTA==}
+    dev: true
+
+  /@unocss/core@0.55.3:
+    resolution: {integrity: sha512-2hV9QlE/iOM4DHQ7i6L8sMC1t5/OVAz6AfGHjetTXcgbNfDCsHWqE8jhLZ1y2DeUvKwJvj2A09sYbYQ8E27+Gg==}
     dev: true
 
   /@unocss/eslint-config@0.55.2(eslint@8.47.0)(typescript@5.1.6):
@@ -2163,6 +2178,20 @@ packages:
     dependencies:
       '@unocss/config': 0.55.2
       '@unocss/core': 0.55.2
+      css-tree: 2.3.1
+      fast-glob: 3.3.1
+      magic-string: 0.30.3
+      postcss: 8.4.28
+    dev: true
+
+  /@unocss/postcss@0.55.3(postcss@8.4.28):
+    resolution: {integrity: sha512-JWfjtSLGuYFWcZwP3eUT2ItdRwehnpmry36cMSuuPNLXG0SPtklP2LRFahvgH85YhASNDAL2OIHP4jGTlG2Jfw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      postcss: ^8.4.21
+    dependencies:
+      '@unocss/config': 0.55.3
+      '@unocss/core': 0.55.3
       css-tree: 2.3.1
       fast-glob: 3.3.1
       magic-string: 0.30.3
