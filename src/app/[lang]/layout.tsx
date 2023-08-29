@@ -1,6 +1,8 @@
+'use client'
 import './globals.css'
 import { dir } from 'i18next'
 import { Inter } from 'next/font/google'
+import { i18n } from '~/i18n/i18n-config'
 import BottomNavBar from '~/ui/BottomNavBar'
 // import { languages } from '~/i18n/setting'
 
@@ -9,6 +11,9 @@ const inter = Inter({ subsets: ['latin'] })
 // export async function generateStaticParams() {
 //   return languages.map((lang) => ({ lang }))
 // }
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }))
+}
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',
@@ -25,12 +30,12 @@ export default function RootLayout({
   params: { lang: string },
 }) {
   return (
-    <html lang={lang}  dir={dir(lang)}>
+    <html lang={lang} dir={dir(lang)}>
       <head>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <link rel="manifest" href="/site.webmanifest"></link>
-        <script src="/serviceWorkerRegister.js" defer></script>
+        {/* <link rel="manifest" href="/site.webmanifest"></link> */}
+        {/* <script src="/serviceWorkerRegister.js" defer></script> */}
       </head>
       <body className={`${inter.className} h-screen min-h-screen max-h-screen w-full fcc-between`}>
         <div className='flex-1 w-full'>
