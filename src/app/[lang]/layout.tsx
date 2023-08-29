@@ -32,7 +32,6 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         {/* <link rel="manifest" href="/site.webmanifest"></link> */}
         {/* <script src="/serviceWorkerRegister.js" defer></script> */}
-        {/* <script src="/audio-recorder.js" defer></script> */}
       </head>
       <body className={`${inter.className} h-screen min-h-screen max-h-screen w-full fcc-between`}>
         <div className='flex-1 w-full'>
