@@ -1,10 +1,10 @@
 'use client'
 import './globals.css'
+import 'uno.css'
 import { dir } from 'i18next'
 import { Inter } from 'next/font/google'
 import BottomNavBar from '~/ui/BottomNavBar'
 import { languages } from '~/i18n/setting'
-import 'uno.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,14 +25,6 @@ export default function RootLayout({
   children: React.ReactNode,
   params: { lang: string },
 }) {
-  window.addEventListener('DOMContentLoaded', () => {
-    let displayMode = 'browser tab';
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      displayMode = 'standalone';
-    }
-    // Log launch display mode to analytics
-    console.log('DISPLAY_MODE_LAUNCH:', displayMode);
-  });
   return (
     <html lang={lang} dir={dir(lang)}>
       <head>
