@@ -6,8 +6,8 @@ import 'recorder-core/src/engine/mp3-engine'
 import 'recorder-core/src/extensions/waveview'
 import { Player } from '@lottiefiles/react-lottie-player';
 
-import { formatMs } from '~/utils/fomat'
-import { createObjectURL, revokeObjectURL } from '~/utils/media'
+import { formatMs } from '~/lib/fomat'
+import { createObjectURL, revokeObjectURL } from '~/lib/media'
 import React from 'react'
 import { Button } from 'antd-mobile'
 
