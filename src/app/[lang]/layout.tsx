@@ -34,7 +34,7 @@ export default function RootLayout({
         {/* <script src="/serviceWorkerRegister.js" defer></script> */}
       </head>
       <body className={`${inter.className} h-screen min-h-screen max-h-screen w-full fcc-between`}>
-        <div className='flex-1 w-full'>
+        <div className='flex-1 w-full overflow-y-scroll'>
           {children}
         </div>
         <div className='flex-0 w-full bg-white shadow'>

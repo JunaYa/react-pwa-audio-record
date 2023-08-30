@@ -1,12 +1,15 @@
 'use client'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Recorder from 'recorder-core'
 import 'recorder-core/src/engine/mp3'
 import 'recorder-core/src/engine/mp3-engine'
 import 'recorder-core/src/extensions/waveview'
+import { Player } from '@lottiefiles/react-lottie-player';
 
 import { formatMs } from '~/utils/fomat'
 import { createObjectURL, revokeObjectURL } from '~/utils/media'
+import React from 'react'
+import { Button } from 'antd-mobile'
 
 type Props = {
   autoAuth?: boolean
@@ -29,6 +32,7 @@ const AudioRecorder: React.FC<Props> = (props) => {
   const [recBlob, setRecBlob] = useState<any>()
   // const [wave, setWave] = useState<any>()
   let wave: any = null
+  const player = React.useRef<any>(null);
 
   const resetData = () => {
     setInstance(null)
@@ -41,7 +45,7 @@ const AudioRecorder: React.FC<Props> = (props) => {
   /**
    * 调用 open 打开录音请求好录音权限
    */
-  const handleRecordAuthOpen = useCallback(() => {
+  const requestRecorderPermision = useCallback(() => {
 
     if (instance) {
       return
@@ -69,7 +73,7 @@ const AudioRecorder: React.FC<Props> = (props) => {
       setInstance(newRec)
 
       //此处创建这些音频可视化图形绘制浏览器支持妥妥的
-      // wave = Recorder.WaveView({ elem: '.recwave' });
+      wave = Recorder.WaveView({ elem: '.recwave' });
 
       console.log('已打开录音，可以点击录制开始录音了');
     }, (msg: any, isUserNotAllow: any) => {//用户拒绝未授权或不支持
@@ -79,23 +83,24 @@ const AudioRecorder: React.FC<Props> = (props) => {
   }, [])
 
   /**
-   * 关闭录音，释放资源
+   * 释放资源
    */
-  const handleRecordAuthClose = useCallback(() => {
+  const releaseRecorderPermision = () => {
     if (instance) {
       instance.close();
     }
-  }, [])
+  }
 
   /**
    * 开始录音
    */
   const handleRecordStart = () => {
-    console
+    
     if (instance && Recorder.IsOpen()) {
       setRecBlob(null)
       instance.start();
       setStatus(StatusEnum.RECOERDING)
+      player.current.play()
     } else {
       console.log('未打开录音', instance)
       // 未打开录音
@@ -115,6 +120,7 @@ const AudioRecorder: React.FC<Props> = (props) => {
       setRecBlob(blob)
       console.log('已录制mp3：' + formatMs(duration) + 'ms ' + blob.size + '字节，可以点击播放、上传了');
       setStatus(StatusEnum.STOP)
+      player.current.stop()
     }, (msg: any) => {
       console.log('录音失败:', msg)
     });
@@ -127,6 +133,7 @@ const AudioRecorder: React.FC<Props> = (props) => {
     if (instance && Recorder.IsOpen()) {
       instance.pause();
       setStatus(StatusEnum.PAUSED)
+      player.current.stop()
     } else {
       // 未打开录音
     };
@@ -139,6 +146,7 @@ const AudioRecorder: React.FC<Props> = (props) => {
     if (instance && Recorder.IsOpen()) {
       instance.resume();
       setStatus(StatusEnum.RECOERDING)
+      player.current.play()
     } else {
       // 未打开录音
     };
@@ -164,36 +172,43 @@ const AudioRecorder: React.FC<Props> = (props) => {
     }, 5000);
   }
 
-  // useEffect(() => {
-  //   if (autoAuth) {
-  //     handleRecordAuthOpen()
-  //   }
-  //   return () => {
-  //     handleRecordAuthClose()
-  //   }
-  // }, [autoAuth])
+  useEffect(() => {
+    if (autoAuth) {
+      requestRecorderPermision()
+    }
+    return () => {
+      releaseRecorderPermision()
+    }
+  }, [autoAuth])
 
   return (
     <>
-      <div className='flex flex-row items-center justify-center gap-8'>
-        <div>
-          <button onClick={handleRecordAuthOpen} >打开录音,请求权限</button>
-          <button onClick={handleRecordAuthClose} >关闭录音,释放资源</button>
-        </div>
-
-        <div className='bg-white shadow'>
-          <button className='bg-red p-4' type='button' onClick={handleRecordStop} >停止</button>
-          <button className='p-4' onClick={handleRecordPause}>暂停</button>
-        </div>
-        <button className='bg-green p-4' type='button' onClick={handleRecordStart}>录制</button>
-        {status === StatusEnum.PAUSED && <button onClick={handleRecordResume}>继续</button>}
-        <span >
-          <button onClick={handleAudioPlay}>播放</button>
-        </span>
+      <div className='frc-center gap-4 mb-4'>
+        <Button onClick={requestRecorderPermision}>打开录音权限</Button>
+        <Button onClick={releaseRecorderPermision}>关闭录音权限</Button>
       </div>
-      <div className='inline-block border-#ccc vertical-bottom'>
-        <div className="recwave h-100px w-300px" />
+      {status === StatusEnum.STOP && <div className='flex flex-row items-center justify-center gap-8'>
+        <Button onClick={handleAudioPlay}>播放</Button>
+        <div>{duration}</div>
+      </div>}
+      <div className='frc-center'>
+        <div className="recwave h-20 w-80vw" />
       </div >
+      <Player
+        ref={player}
+        loop
+        autoplay={false}
+        controls={true}
+        speed={0.6}
+        src="https://lottie.host/f6449572-524b-4122-afe1-6b4d084b81c0/CpdBSeXDDG.json"
+        style={{ height: '80vw', width: '80vw' }}
+      >
+      </Player>
+      <div className='frc-center'>
+        {status !== StatusEnum.RECOERDING && <Button onClick={handleRecordStart}>点击开始录制</Button>}
+        {status === StatusEnum.PAUSED && <Button onClick={handleRecordResume}>继续</Button>}
+        {status === StatusEnum.RECOERDING && <Button onClick={handleRecordStop}>停止录制</Button>}
+      </div>
       <audio id="audio" crossOrigin="anonymous"></audio>
     </>
 
