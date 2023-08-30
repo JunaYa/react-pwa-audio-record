@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google'
 import BottomNavBar from '~/ui/BottomNavBar'
 import { languages } from '~/i18n/setting'
 import { Metadata } from 'next/types'
+import { usePathname } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,6 +48,9 @@ export default function RootLayout({
   children: React.ReactNode,
   params: { lang: string },
 }) {
+  const pathname = usePathname()
+  const urls = ['/publish', '/person', '/home']
+  
   return (
     <html lang={lang} dir={dir(lang)}>
       <head>
@@ -59,9 +63,9 @@ export default function RootLayout({
         <div className='flex-1 w-full overflow-y-scroll'>
           {children}
         </div>
-        <div className='flex-0 w-full bg-white shadow'>
+        {!!urls.find(item => pathname.includes(item)) && <div className='flex-0 w-full bg-white shadow'>
           <BottomNavBar />
-        </div>
+        </div>}
       </body>
     </html >
   )
