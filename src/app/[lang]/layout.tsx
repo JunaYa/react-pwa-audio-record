@@ -7,6 +7,7 @@ import BottomNavBar from '~/ui/BottomNavBar'
 import { languages } from '~/i18n/setting'
 import { Metadata } from 'next/types'
 import { usePathname } from 'next/navigation'
+import { SessionProvider } from "next-auth/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,7 +47,7 @@ export default function RootLayout({
   },
 }: {
   children: React.ReactNode,
-  params: { lang: string },
+  params: { lang: string, },
 }) {
   const pathname = usePathname()
   const urls = ['/publish', '/person', '/home']
@@ -61,7 +62,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} h-screen min-h-screen max-h-screen w-full fcc-between`}>
         <div className='flex-1 w-full overflow-y-scroll'>
+        <SessionProvider session={session}>
           {children}
+        </SessionProvider>
         </div>
         {!!urls.find(item => pathname.includes(item)) && <div className='flex-0 w-full bg-white shadow self-end'>
           <BottomNavBar />

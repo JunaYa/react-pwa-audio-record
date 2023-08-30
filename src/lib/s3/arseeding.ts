@@ -4,12 +4,6 @@ import type { Config } from 'arseeding-js/esm/types'
 import { Buffer } from 'buffer'
 import { ethers } from 'ethers'
 
-declare global {
-  interface Window{
-    ethereum?: any
-  }
-}
-
 function getBuffer(file: File): Promise<any> {
   return new Promise(resolve => {
     const reader = new FileReader()

@@ -33,7 +33,8 @@
     "react-dom": "18.2.0",
     "react-i18next": "^13.2.0",
     "recorder-core": "^1.2.23070100",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "wagmi": "^1.3.10"
   },
   "devDependencies": {
     "@types/node": "20.5.1",
