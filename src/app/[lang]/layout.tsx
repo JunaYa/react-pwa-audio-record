@@ -63,7 +63,7 @@ export default function RootLayout({
         <div className='flex-1 w-full overflow-y-scroll'>
           {children}
         </div>
-        {!!urls.find(item => pathname.includes(item)) && <div className='flex-0 w-full bg-white shadow'>
+        {!!urls.find(item => pathname.includes(item)) && <div className='flex-0 w-full bg-white shadow self-end'>
           <BottomNavBar />
         </div>}
       </body>

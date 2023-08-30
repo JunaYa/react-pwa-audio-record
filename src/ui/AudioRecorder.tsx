@@ -9,7 +9,9 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import { formatMs } from '~/lib/fomat'
 import { createObjectURL, revokeObjectURL } from '~/lib/media'
 import React from 'react'
-import { Button } from 'antd-mobile'
+import { Button, Toast } from 'antd-mobile'
+import { putUpload } from '~/lib/s3'
+import UploadAudio from './upload/Audio'
 
 type Props = {
   autoAuth?: boolean
@@ -190,9 +192,10 @@ const AudioRecorder: React.FC<Props> = (props) => {
       {status === StatusEnum.STOP && <div className='flex flex-row items-center justify-center gap-8'>
         <Button onClick={handleAudioPlay}>播放</Button>
         <div>{duration}</div>
+        <UploadAudio file={recBlob}/>
       </div>}
       <div className='frc-center'>
-        <div className="recwave h-20 w-80vw" />
+        <div className="recwave h-10 w-80vw" />
       </div >
       <Player
         ref={player}
