@@ -1,5 +1,7 @@
 {
   "title": "个人中心",
+  "button.name": "应用名称",
+  "button.version": "版本",
   "button.setting": "设置页面",
   "button.about": "关于页面"
 }

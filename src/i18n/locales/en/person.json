@@ -1,5 +1,7 @@
 {
   "title": "Person",
+  "button.name": "App name",
+  "button.version": "Version",
   "button.setting": "Setting",
   "button.about": "About"
 }

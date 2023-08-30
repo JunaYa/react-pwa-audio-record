@@ -1,5 +1,5 @@
 'use client'
-import { List } from 'antd-mobile'
+import { List, NavBar } from 'antd-mobile'
 import pkg from '../../../../package.json'
 import { useTranslation } from '~/i18n/client'
 import { useRouter } from 'next/navigation'
@@ -8,9 +8,14 @@ const PersonPage = ({ params: { lang } }: { params: { lang: string } }) => {
   const router = useRouter()
   return (
     <main>
-      <div>{pkg.name}</div>
-      <div>{pkg.version}</div>
+      <NavBar back={null} >{t('title')}</NavBar>
       <List>
+        <List.Item clickable={false} extra={pkg.name}>
+          {t('button.name')}
+        </List.Item>
+        <List.Item clickable={false} extra={pkg.version}>
+          {t('button.version')}
+        </List.Item>
         <List.Item clickable onClick={() => router.push('/setting')}>
           {t('button.setting')}
         </List.Item>
