@@ -4,7 +4,9 @@ import React, { FC, ReactNode, useState } from 'react'
 import { ImageUploader, Toast, Dialog } from 'antd-mobile'
 import { ImageUploadItem } from 'antd-mobile/es/components/image-uploader'
 import { PictureOutline } from 'antd-mobile-icons'
-import { delay } from '~/lib/delay'
+import { putDelete, putUpload } from '~/lib/s3'
+
+const ALBUM_NAME = 'avatar'
 
 type Props = {
   maxCount?: number
@@ -27,26 +29,31 @@ const UploadImage: FC<Props> = (props) => {
   }
 
   const handleUpload = async (file: File) => {
-    await delay(3000)
-    return {
-      url: URL.createObjectURL(file),
+    const result = await putUpload({
+      file,
+      albumName: ALBUM_NAME,
+    })
+    if (result.success) {
+      return { url: result.url }
     }
-
-    // mock upload error status
-    // throw new Error('Fail to upload')
+    throw new Error(result.message)
   }
 
-  const onDelete = () => {
-    return Dialog.confirm({
-      content: '是否确认删除',
-    })
+  const onDelete = async (item: ImageUploadItem) => {
+    const isOK: boolean = await Dialog.confirm({ content: '是否确认删除' })
+
+    if (!isOK) return true
+
+    const id = item.url.split(`${ALBUM_NAME}/`)[1]
+    const result = await putDelete(ALBUM_NAME, id)
+    return result.success
   }
 
   return (
     <ImageUploader
       value={fileList}
       onChange={setFileList}
-      upload={handleUpload}
+      upload={handleUpload as any}
       beforeUpload={beforeUpload}
       multiple={maxCount > 1}
       maxCount={maxCount}
