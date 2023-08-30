@@ -2,9 +2,13 @@ import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity'
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity'
 import { DeleteObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { v4 as uuidv4 } from 'uuid'
-import { AWS_REGION, IDENTITY_POOL_ID, BUCKET_INPUT_PREFIX, BUCKET_NAME } from '~/env'
 import { Upload } from '@aws-sdk/lib-storage'
 import type { Progress } from '@aws-sdk/lib-storage/dist-types'
+
+const AWS_REGION = "us-east-1"
+const IDENTITY_POOL_ID = "us-east-1:7d1d2487-6957-4c8a-a000-e64971c6e65c"
+const BUCKET_NAME = "deschooldev"
+const BUCKET_INPUT_PREFIX="courseVideos"
 
 type Params = {
   file: File

@@ -11,6 +11,10 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity": "^3.398.0",
+    "@aws-sdk/client-s3": "^3.400.0",
+    "@aws-sdk/credential-provider-cognito-identity": "^3.398.0",
+    "@aws-sdk/lib-storage": "^3.400.0",
     "@babel/core": "^7.22.10",
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "accept-language": "^3.0.18",
@@ -25,12 +29,14 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^13.2.0",
-    "recorder-core": "^1.2.23070100"
+    "recorder-core": "^1.2.23070100",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "@types/uuid": "^9.0.2",
     "@unocss/eslint-config": "^0.55.2",
     "@unocss/reset": "^0.55.2",
     "@unocss/webpack": "^0.55.3",

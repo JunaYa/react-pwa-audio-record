@@ -1,10 +1,12 @@
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity'
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
-import message from 'antd/es/message'
 import { v4 as uuidv4 } from 'uuid'
-import type { ImageType } from 'react-images-uploading/dist/typings'
-import { AWS_REGION, IDENTITY_POOL_ID, BUCKET_NAME } from '~/env'
+
+const AWS_REGION = "us-east-1"
+const IDENTITY_POOL_ID = "us-east-1:7d1d2487-6957-4c8a-a000-e64971c6e65c"
+const BUCKET_NAME = "deschooldev"
+// const BUCKET_INPUT_PREFIX="courseVideos"
 
 // Initialize the Amazon Cognito credentials provider
 const s3 = new S3Client({
@@ -20,7 +22,7 @@ const addPhoto = async (
   albumName: string,
   file: File,
   filename: string,
-  imagetype: string,
+  any: string,
   onChange: Function,
   setIsLoading: Function,
   userId: string,
@@ -33,23 +35,23 @@ const addPhoto = async (
       Bucket: BUCKET_NAME,
       Key: resourceKey,
       Body: file,
-      ContentType: imagetype,
+      ContentType: any,
     }
 
     try {
       setIsLoading(true)
       await s3.send(new PutObjectCommand(uploadParams))
       onChange([{ data_url: `https://s3.us-east-1.amazonaws.com/deschool/${resourceKey}`, filename: `${uuid}` }], 'add')
-      message.success('Successfully uploaded photo.')
+      console.log('Successfully uploaded photo.')
     } catch (err) {
       if (err instanceof Error) {
-        return message.error(`There was an error uploading your photo: ${err.message}`)
+        return console.log(`There was an error uploading your photo: ${err.message}`)
       }
-      return message.error('There was an error uploading your photo.')
+      return console.log('There was an error uploading your photo.')
     }
   } catch (err) {
     if (!file) {
-      return message.error('Choose a file to upload first.')
+      return console.log('Choose a file to upload first.')
     }
   } finally {
     setIsLoading(false)
@@ -57,31 +59,31 @@ const addPhoto = async (
 }
 
 // 为了展示loading状态多加了一个参数setIsLoading
-const onUploadChange = (albumname: string, imageList: ImageType[], onChange: Function, setIsLoading: Function, userId: string) => {
-  const image: ImageType = imageList[0]
+const onUploadChange = (albumname: string, imageList: any[], onChange: Function, setIsLoading: Function, userId: string) => {
+  const image: any = imageList[0]
   if (image && image.file) {
     const isLt2M = image.file.size / 1024 / 1024 < 2
     if (!isLt2M) {
-      message.error('Image must smaller than 2MB!')
+      console.log('Image must smaller than 2MB!')
     } else {
       addPhoto(albumname, image.file, image.file.name, image.file.type, onChange, setIsLoading, userId)
     }
   }
 }
 
-const onDelete = async (albumName: string, filename: string, imageList: ImageType[], deleteIndex: number, onChange: Function) => {
+const onDelete = async (albumName: string, filename: string, imageList: any[], deleteIndex: number, onChange: Function) => {
   try {
     // const albumPhotosKey = `${albumName}/${filename}`
     // const resourceKey = albumPhotosKey
     // const params = { Key: resourceKey, Bucket: BUCKET_NAME }
     // await s3.send(new DeleteObjectCommand(params))
-    // message.success('Successfully deleted photo.')
+    // console.log('Successfully deleted photo.')
     const temp = imageList.slice()
     temp.splice(deleteIndex, 1)
     onChange(temp, 'delete')
   } catch (err) {
     if (err instanceof Error) {
-      return message.error(`There was an error deleting your photo: ${err.message}`)
+      return console.log(`There was an error deleting your photo: ${err.message}`)
     }
   }
 }

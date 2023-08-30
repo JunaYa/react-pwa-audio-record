@@ -1,6 +1,7 @@
 import { useTranslation } from '~/i18n';
 import { fallbackLang, languages } from '~/i18n/setting';
 import ClientComponent from '~/ui/ClientComponnet';
+import UploadImage from '~/ui/upload/Image';
 
 // export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
 //   const { t } = await useTranslation(lang)
@@ -21,6 +22,7 @@ export default async function Home({ params: { lang } }: { params: { lang: strin
       Main page
       <div>{t('welcome')}</div>
       <ClientComponent />
+      <UploadImage />
     </main>
   )
 }
