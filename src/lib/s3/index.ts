@@ -25,8 +25,13 @@ const putDelete = async (albumName: string, filename: string): Promise<{success:
     const resourceKey = albumPhotosKey
     const params = { Key: resourceKey, Bucket: BUCKET_NAME }
     const result = await s3.send(new DeleteObjectCommand(params))
-    message = 'Successfully deleted photo.'
-    success = true
+    if (result['$metadata'].httpStatusCode === 204) {
+      message = 'Successfully deleted photo.'
+      success = true
+    } else {
+      message = 'There was an error deleting your photo'
+      success = false
+    }
   } catch (err) {
     if (err instanceof Error) {
       message = err.message
