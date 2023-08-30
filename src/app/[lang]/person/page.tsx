@@ -1,13 +1,18 @@
 'use client'
-import { List, NavBar } from 'antd-mobile'
+import { Button, List, NavBar } from 'antd-mobile'
 import pkg from '../../../../package.json'
 import { useTranslation } from '~/i18n/client'
 import { useRouter } from 'next/navigation'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { signIn, signOut } from "next-auth/react"
+import { getServerSession } from "next-auth/next"
 
 const PersonPage = ({ params: { lang } }: { params: { lang: string } }) => {
   const { t } = useTranslation(lang, 'person')
   const router = useRouter()
+  const session = getServerSession()
+  console.log('session', session)
+  
   return (
     <main>
       <NavBar back={null} >{t('title')}</NavBar>
@@ -26,6 +31,8 @@ const PersonPage = ({ params: { lang } }: { params: { lang: string } }) => {
         </List.Item>
       </List>
       <ConnectButton></ConnectButton>
+      <Button block color='primary' onClick={() => signIn()}>SignIn</Button>
+      <Button block onClick={() => signOut()}>SignOut</Button>
     </main>
   )
 }
