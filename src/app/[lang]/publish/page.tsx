@@ -8,7 +8,7 @@ export default function PublishPage({ params: { lang } }: { params: { lang: stri
   return (
     <main className="h-full flex-col items-center justify-between">
       <NavBar back={null} >{t('title')}</NavBar>
-      <AudioRecorder autoAuth/>
+      <AudioRecorder />
     </main>
   )
 }
