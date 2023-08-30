@@ -3,6 +3,8 @@ import { List, NavBar } from 'antd-mobile'
 import pkg from '../../../../package.json'
 import { useTranslation } from '~/i18n/client'
 import { useRouter } from 'next/navigation'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 const PersonPage = ({ params: { lang } }: { params: { lang: string } }) => {
   const { t } = useTranslation(lang, 'person')
   const router = useRouter()
@@ -23,6 +25,7 @@ const PersonPage = ({ params: { lang } }: { params: { lang: string } }) => {
           {t('button.about')}
         </List.Item>
       </List>
+      <ConnectButton></ConnectButton>
     </main>
   )
 }
