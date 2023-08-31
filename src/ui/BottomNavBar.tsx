@@ -9,7 +9,10 @@ import {
 import { useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-function getDefaultTab(path: string) {
+function getDefaultTab(path: string | null) {
+  if (!path) {
+    return 'home'
+  }
   if (path.includes('/publish')) {
     return 'publish'
   }

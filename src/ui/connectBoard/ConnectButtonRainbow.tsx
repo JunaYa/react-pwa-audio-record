@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import MetaMaskImage from '~/assets/icons/mask.png'
 import UnipassLogo from '~/assets/icons/unipass.svg'
 import { Button, Popup, SpinLoading } from 'antd-mobile'
-
+import Image from 'next/image'
 
 type ConnectButtonProps = {
   onClose?: () => void
@@ -124,7 +124,12 @@ const ConnectButtonRainbow: React.FC<ConnectButtonProps> = props => {
                     <span>{t('signToLogin')}</span>
                     {verifyLoad && <SpinLoading color="#774FF8" style={{ width: 20, height: 20, fontSize: 20 }} />}
                   </div>
-                  <img alt="mask" src={MetaMaskImage} style={{ width: '25px', height: '25px' }} />
+                  <Image
+                    src={MetaMaskImage}
+                    alt="mask"
+                    width={25}
+                    height={25}
+                  />
                 </div>
                 <div className="w-full whitespace-break-spaces overflow-hidden text-left mt-2 text-md text-black">{address}</div>
               </Button>
@@ -144,7 +149,16 @@ const ConnectButtonRainbow: React.FC<ConnectButtonProps> = props => {
                     <span>{t('signToLogin')}</span>
                     {verifyLoad && <SpinLoading color="#774FF8" style={{ width: 20, height: 20, fontSize: 20 }} />}
                   </div>
-                  <img alt="mask" src={UnipassLogo} style={{ width: '25px', height: '25px' }} />
+                  <Image
+                    src={UnipassLogo}
+                    alt="unipass"
+                    width={25}
+                    height={25}
+                    // width={500} automatically provided
+                    // height={500} automatically provided
+                    // blurDataURL="data:..." automatically provided
+                    // placeholder="blur" // Optional blur-up while loading
+                  />
                 </div>
                 <div
                   className="w-full whitespace-break-spaces overflow-hidden text-left mt-2 text-md text-black"

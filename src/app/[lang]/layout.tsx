@@ -1,7 +1,6 @@
 'use client'
 import './globals.css'
 import 'uno.css'
-import '@rainbow-me/rainbowkit/styles.css'
 import { dir } from 'i18next'
 import { Inter } from 'next/font/google'
 import BottomNavBar from '~/ui/BottomNavBar'
@@ -66,7 +65,7 @@ export default function RootLayout({
         <div className='flex-1 w-full overflow-y-scroll'>
           <Providers>{children}</Providers>
         </div>
-        {!!urls.find(item => pathname.includes(item)) && <div className='flex-0 w-full bg-white shadow self-end'>
+        {!!urls.find(item => pathname?.includes(item)) && <div className='flex-0 w-full bg-white shadow self-end'>
           <BottomNavBar />
         </div>}
       </body>
